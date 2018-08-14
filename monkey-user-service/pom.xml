@@ -52,6 +52,13 @@
 			<artifactId>lombok</artifactId>
 		</dependency>
 
+		<!-- 通用工具类 -->
+		<dependency>
+			<groupId>com.github</groupId>
+			<artifactId>monkey-common</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
