@@ -1,4 +1,4 @@
-package com.github.user.service.impl;
+package com.github.user.service;
 
 import com.github.user.param.LoginParam;
 import com.github.user.po.User;

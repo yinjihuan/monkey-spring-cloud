@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.cxytiandi.jdbc.EntityService;
 import com.github.user.param.LoginParam;
 import com.github.user.po.User;
+import com.github.user.service.UserService;
 
 @Service
 public class UserServiceImpl extends EntityService<User> implements UserService {

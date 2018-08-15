@@ -11,7 +11,7 @@ import com.github.common.base.Response;
 import com.github.common.base.ResponseData;
 import com.github.user.param.LoginParam;
 import com.github.user.po.User;
-import com.github.user.service.impl.UserService;
+import com.github.user.service.UserService;
 
 @RestController
 @RequestMapping("/user")
