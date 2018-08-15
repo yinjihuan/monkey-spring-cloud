@@ -1,20 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.github</groupId>
-	<artifactId>monkey-user-service</artifactId>
-	<version>1.0.1</version>
-	<packaging>jar</packaging>
+  <groupId>com.github</groupId>
+  <artifactId>monkey-article-service</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
 
-	<name>monkey-user-service</name>
-	<url>http://maven.apache.org</url>
+  <name>monkey-article-service</name>
+  <url>http://maven.apache.org</url>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 
-	<parent>
+ <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.1.RELEASE</version>
@@ -59,36 +59,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-
-		<!-- jdbc orm -->
-		<dependency>
-			<groupId>com.github.yinjihuan</groupId>
-			<artifactId>smjdbctemplate</artifactId>
-			<version>1.1</version>
-			<exclusions>
-				<exclusion>
-					<groupId>com.google.guava</groupId>
-					<artifactId>guava</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid-spring-boot-starter</artifactId>
-			<version>1.1.10</version>
-		</dependency>
-
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
-
+		
 		<!-- 简化get,set方法 -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -119,7 +95,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<executable>true</executable>
-					<mainClass>com.github.user.MonkeyUserServiceApplication</mainClass>
+					<mainClass>com.github.article.MonkeyArticleServiceApplication</mainClass>
 				</configuration>
 			</plugin>
 
@@ -135,10 +111,4 @@
 		</plugins>
 	</build>
 
-	<repositories>
-		<repository>
-			<id>jitpack.io</id>
-			<url>https://jitpack.io</url>
-		</repository>
-	</repositories>
 </project>
