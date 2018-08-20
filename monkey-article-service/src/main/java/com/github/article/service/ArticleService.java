@@ -1,5 +1,6 @@
 package com.github.article.service;
 
+import com.github.article.dto.ArticleDto;
 import com.github.article.po.Article;
 
 public interface ArticleService {
@@ -11,4 +12,10 @@ public interface ArticleService {
 	 */
 	String saveArticle(Article article);
 	
+	/**
+	 * 查询文章信息
+	 * @param id	文章ID
+	 * @return
+	 */
+	ArticleDto  getArticle(String id);
 }

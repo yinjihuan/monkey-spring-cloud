@@ -11,4 +11,11 @@ public interface ArticleServiceDao {
 	 */
 	String saveArticle(Article article);
 	
+	/**
+	 * 查询文章信息
+	 * @param id	文章ID
+	 * @return
+	 */
+	Article  getArticle(String id);
+	
 }
