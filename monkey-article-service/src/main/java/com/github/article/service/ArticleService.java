@@ -1,5 +1,7 @@
 package com.github.article.service;
 
+import java.util.List;
+
 import com.github.article.dto.ArticleDto;
 import com.github.article.po.Article;
 
@@ -32,4 +34,11 @@ public interface ArticleService {
 	 * @return 成功或者失败
 	 */
 	boolean updateArticle(Article article);
+	
+	/**
+	 * 查询用户的文章信息
+	 * @param  userId	用户ID
+	 * @return
+	 */
+	List<ArticleDto> queryArticleByUser(Long userId);
 }

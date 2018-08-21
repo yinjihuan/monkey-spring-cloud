@@ -1,5 +1,8 @@
 package com.github.article.dao;
 
+import java.util.List;
+
+import com.github.article.dto.ArticleDto;
 import com.github.article.po.Article;
 
 public interface ArticleServiceDao {
@@ -31,5 +34,12 @@ public interface ArticleServiceDao {
 	 * @return 成功或者失败
 	 */
 	boolean updateArticle(Article article);
+	
+	/**
+	 * 查询用户的文章信息
+	 * @param  userId	用户ID
+	 * @return
+	 */
+	List<Article> queryArticleByUser(Long userId);
 	
 }

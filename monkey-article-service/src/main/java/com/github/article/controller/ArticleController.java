@@ -1,5 +1,7 @@
 package com.github.article.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -90,4 +92,13 @@ public class ArticleController {
 		return Response.ok(articleService.updateArticle(article));
 	}
 	
+	@ApiOperation(value = "查询用户的文章信息")
+	@ApiResponses({ @ApiResponse(code = 200, message = "OK", response = ArticleDto.class) })
+	@GetMapping("/list/user")
+	public ResponseData<List<ArticleDto>> queryArticleByUser(Long userId) {
+		if (userId == null) {
+			return Response.failByParams("userId不能为空");
+		}
+		return Response.ok(articleService.queryArticleByUser(userId));
+	}
 }

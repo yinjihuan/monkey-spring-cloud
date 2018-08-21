@@ -1,6 +1,7 @@
 package com.github.article.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -43,6 +44,10 @@ public class ArticleServiceDaoImpl implements ArticleServiceDao {
 		UpdateResult result = mongoTemplate.updateFirst(
 				Query.query(Criteria.where("id").is(article.getId())), update, Article.class);
 		return result.getModifiedCount() == 1 ? true : false;
+	}
+
+	public List<Article> queryArticleByUser(Long userId) {
+		return mongoTemplate.find(Query.query(Criteria.where("userId").is(userId)), Article.class);
 	}
 
 }
