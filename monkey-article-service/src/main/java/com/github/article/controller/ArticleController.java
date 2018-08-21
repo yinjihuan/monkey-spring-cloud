@@ -32,19 +32,19 @@ public class ArticleController {
 	@PostMapping("/add")
 	public ResponseData<String> addArticle(@RequestBody Article article) {
 		if (article == null) {
-			return Response.fail("参数不能为空");
+			return Response.failByParams("参数不能为空");
 		}
 		if (!StringUtils.hasText(article.getTitle())) {
-			return Response.fail("title不能为空");
+			return Response.failByParams("title不能为空");
 		}
 		if (!StringUtils.hasText(article.getContent())) {
-			return Response.fail("content不能为空");
+			return Response.failByParams("content不能为空");
 		}
 		if (CollectionUtils.isEmpty(article.getTags())) {
-			return Response.fail("tags不能为空");
+			return Response.failByParams("tags不能为空");
 		}
 		if (article.getUserId() == null) {
-			return Response.fail("userId不能为空");
+			return Response.failByParams("userId不能为空");
 		}
 		String id = articleService.saveArticle(article);
 		return Response.ok(id);
@@ -55,7 +55,7 @@ public class ArticleController {
 	@GetMapping("/get")
 	public ResponseData<ArticleDto> getArticle(String id) {
 		if (id == null) {
-			return Response.fail("文章id不能为空");
+			return Response.failByParams("文章id不能为空");
 		}
 		return Response.ok(articleService.getArticle(id));
 	}
@@ -64,6 +64,30 @@ public class ArticleController {
 	@PostMapping("/delete")
 	public ResponseData<Boolean> deleteArticle(String id) {
 		return Response.ok(articleService.deleteArticle(id));
+	}
+	
+	@ApiOperation(value = "修改文章")
+	@PostMapping("/update")
+	public ResponseData<Boolean> updateArticle(@RequestBody Article article) {
+		if (article == null) {
+			return Response.failByParams("参数不能为空");
+		}
+		if (!StringUtils.hasText(article.getId())) {
+			return Response.failByParams("id不能为空");
+		}
+		if (!StringUtils.hasText(article.getTitle())) {
+			return Response.failByParams("title不能为空");
+		}
+		if (!StringUtils.hasText(article.getContent())) {
+			return Response.failByParams("content不能为空");
+		}
+		if (CollectionUtils.isEmpty(article.getTags())) {
+			return Response.failByParams("tags不能为空");
+		}
+		if (article.getUserId() == null) {
+			return Response.failByParams("userId不能为空");
+		}
+		return Response.ok(articleService.updateArticle(article));
 	}
 	
 }

@@ -1,5 +1,7 @@
 package com.github.article.service;
 
+import java.util.Date;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ public class ArticleServiceImpl implements ArticleService {
 	private ArticleServiceDao articleServiceDao;
 
 	public String saveArticle(Article article) {
+		article.setAddTime(new Date());
 		return articleServiceDao.saveArticle(article);
 	}
 
@@ -30,6 +33,10 @@ public class ArticleServiceImpl implements ArticleService {
 
 	public boolean deleteArticle(String id) {
 		return articleServiceDao.deleteArticle(id);
+	}
+
+	public boolean updateArticle(Article article) {
+		return articleServiceDao.updateArticle(article);
 	}
 	
 }

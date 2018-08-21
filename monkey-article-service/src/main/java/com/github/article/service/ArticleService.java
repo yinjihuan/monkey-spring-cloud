@@ -25,4 +25,11 @@ public interface ArticleService {
 	 * @return
 	 */
 	boolean deleteArticle(String id);
+	
+	/**
+	 * 修改文章
+	 * @param  article	文章信息对象
+	 * @return 成功或者失败
+	 */
+	boolean updateArticle(Article article);
 }

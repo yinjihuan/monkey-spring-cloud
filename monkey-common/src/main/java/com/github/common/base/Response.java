@@ -13,6 +13,12 @@ public class Response {
 
 	private Response() {}
 	
+	public static <E> ResponseData<E> ok() {
+		ResponseData<E> res = new ResponseData<E>();
+		res.ok(null);
+		return res;
+	}
+	
 	public static <E> ResponseData<E> ok(E data) {
 		ResponseData<E> res = new ResponseData<E>();
 		res.ok(data);
@@ -28,6 +34,13 @@ public class Response {
 	public static <E> ResponseData<E> fail(String message) {
 		ResponseData<E> res = new ResponseData<E>();
 		res.fail(message);
+		return res;
+	}
+	
+	public static <E> ResponseData<E> failByParams(String message) {
+		ResponseData<E> res = new ResponseData<E>();
+		res.fail(message);
+		res.setCode(ResponseCode.PARAM_ERROR_CODE.getCode());
 		return res;
 	}
 	

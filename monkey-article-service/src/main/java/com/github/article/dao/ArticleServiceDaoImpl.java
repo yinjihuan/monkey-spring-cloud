@@ -1,5 +1,7 @@
 package com.github.article.dao;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -8,8 +10,6 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import com.github.article.po.Article;
-import com.mongodb.bulk.UpdateRequest;
-import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 
 @Repository
@@ -31,6 +31,17 @@ public class ArticleServiceDaoImpl implements ArticleServiceDao {
 		UpdateResult result = mongoTemplate.updateFirst(
 				Query.query(Criteria.where("id").is(id)), 
 				Update.update("removeStatus", true), Article.class);
+		return result.getModifiedCount() == 1 ? true : false;
+	}
+
+	public boolean updateArticle(Article article) {
+		Update update = Update.update("title", article.getTitle())
+				.set("content", article.getContent())
+				.set("tags", article.getTags())
+				.set("type", article.getType())
+				.set("updateTime", new Date());
+		UpdateResult result = mongoTemplate.updateFirst(
+				Query.query(Criteria.where("id").is(article.getId())), update, Article.class);
 		return result.getModifiedCount() == 1 ? true : false;
 	}
 
