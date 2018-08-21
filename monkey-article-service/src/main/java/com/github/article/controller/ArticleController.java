@@ -60,4 +60,10 @@ public class ArticleController {
 		return Response.ok(articleService.getArticle(id));
 	}
 	
+	@ApiOperation(value = "删除文章")
+	@PostMapping("/delete")
+	public ResponseData<Boolean> deleteArticle(String id) {
+		return Response.ok(articleService.deleteArticle(id));
+	}
+	
 }

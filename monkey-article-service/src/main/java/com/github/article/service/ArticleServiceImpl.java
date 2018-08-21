@@ -27,5 +27,9 @@ public class ArticleServiceImpl implements ArticleService {
 		BeanUtils.copyProperties(article, result);
 		return result;
 	}
+
+	public boolean deleteArticle(String id) {
+		return articleServiceDao.deleteArticle(id);
+	}
 	
 }

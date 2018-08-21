@@ -34,4 +34,6 @@ public class ArticleDto {
 	@ApiModelProperty(value = "文章类型（0:原创  1:转载  2:翻译）")
 	private int type; 
 	
+	@ApiModelProperty(value = "是否删除")
+	private boolean removeStatus;
 }

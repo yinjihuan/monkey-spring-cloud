@@ -18,4 +18,11 @@ public interface ArticleServiceDao {
 	 */
 	Article  getArticle(String id);
 	
+	/**
+	 * 删除文章
+	 * @param id	文章ID
+	 * @return
+	 */
+	boolean deleteArticle(String id);
+	
 }

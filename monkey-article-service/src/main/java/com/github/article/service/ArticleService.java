@@ -17,5 +17,12 @@ public interface ArticleService {
 	 * @param id	文章ID
 	 * @return
 	 */
-	ArticleDto  getArticle(String id);
+	ArticleDto getArticle(String id);
+	
+	/**
+	 * 删除文章
+	 * @param id	文章ID
+	 * @return
+	 */
+	boolean deleteArticle(String id);
 }
