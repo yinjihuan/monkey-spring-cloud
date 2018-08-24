@@ -2,6 +2,7 @@ package com.github.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.common.base.Response;
 import com.github.common.base.ResponseData;
+import com.github.user.dto.UserDto;
 import com.github.user.dto.UserLoginDto;
 import com.github.user.param.LoginParam;
 import com.github.user.po.User;
@@ -33,19 +35,28 @@ public class UserController {
 	@PostMapping("/login")
 	public ResponseData<User> login(@ApiParam(value = "登录参数", required = true) @RequestBody LoginParam param) {
 		if (param == null) {
-			return Response.fail("参数不能为空");
+			return Response.failByParams("参数不能为空");
 		}
 		if (!StringUtils.hasText(param.getUsername())) {
-			return Response.fail("username不能为空");
+			return Response.failByParams("username不能为空");
 		}
 		if (!StringUtils.hasText(param.getPass())) {
-			return Response.fail("pass不能为空");
+			return Response.failByParams("pass不能为空");
 		}
 		User user = userService.login(param);
 		if (user == null) {
-			return Response.fail("用户名或者密码错误");
+			return Response.failByParams("用户名或者密码错误");
 		}
 		return Response.ok(user);
 	}
 
+	@ApiOperation(value = "获取用户信息")
+	@ApiResponses({ @ApiResponse(code = 200, message = "OK", response = UserDto.class) })
+	@GetMapping("/get")
+	public ResponseData<UserDto> getUser(Long id) {
+		if (id == null) {
+			return Response.failByParams("id不能为空");
+		}
+		return Response.ok(userService.getUser(id));
+	}
 }
