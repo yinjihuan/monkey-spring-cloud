@@ -3,7 +3,16 @@ package com.github.user.service;
 import com.github.user.dto.UserDto;
 import com.github.user.param.LoginParam;
 import com.github.user.po.User;
-
+/**
+ * 用户业务
+ * 
+ * @author yinjihuan
+ * 
+ * @about http://cxytiandi.com/about
+ * 
+ * @date 2018-08-25
+ * 
+ */
 public interface UserService {
 
 	/**
@@ -11,11 +20,9 @@ public interface UserService {
 	 * 
 	 * @author yinjihuan
 	 * 
-	 * @date 2018-08-14
-	 * 
 	 * @param param 登录参数
 	 * 
-	 * @return
+	 * @return 登录之后的用户信息
 	 */
 	User login(LoginParam param);
 	
@@ -24,11 +31,9 @@ public interface UserService {
 	 * 
 	 * @author yinjihuan
 	 * 
-	 * @date 2018-08-24
-	 * 
 	 * @param id 用户ID
 	 * 
-	 * @return
+	 * @return 用户信息
 	 */
 	UserDto getUser(Long id);
 	

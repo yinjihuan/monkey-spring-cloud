@@ -1,4 +1,4 @@
-package com.github.article.service;
+package com.github.article.service.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.github.article.dao.ArticleServiceDao;
 import com.github.article.dto.ArticleDto;
 import com.github.article.po.Article;
+import com.github.article.service.ArticleService;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -50,6 +51,16 @@ public class ArticleServiceImpl implements ArticleService {
 			datas.add(articleDto);
 		}
 		return datas;
+	}
+
+	public Long addArticleVisitCount(String id) {
+		boolean result = articleServiceDao.addArticleVisitCount(id);
+		if (!result) {
+			return null;
+		}
+		Article article = articleServiceDao.getArticle(id);
+		if (article == null) return null;
+		return article.getVisitCount();
 	}
 	
 }

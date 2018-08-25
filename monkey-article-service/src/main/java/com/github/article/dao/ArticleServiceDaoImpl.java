@@ -50,4 +50,10 @@ public class ArticleServiceDaoImpl implements ArticleServiceDao {
 		return mongoTemplate.find(Query.query(Criteria.where("userId").is(userId)), Article.class);
 	}
 
+	public boolean addArticleVisitCount(String id) {
+		UpdateResult result = mongoTemplate.updateFirst(Query.query(Criteria.where("id").is(id)), 
+				new Update().inc("visitCount", 1), Article.class);
+		return result.getModifiedCount() == 1 ? true : false;
+	}
+
 }

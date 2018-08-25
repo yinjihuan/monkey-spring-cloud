@@ -101,4 +101,13 @@ public class ArticleController {
 		}
 		return Response.ok(articleService.queryArticleByUser(userId));
 	}
+	
+	@ApiOperation(value = "增加文章浏览量")
+	@GetMapping("/visit/add")
+	public ResponseData<Long> addArticleVisitCount(String id) {
+		if (id == null) {
+			return Response.failByParams("文章id不能为空");
+		}
+		return Response.ok(articleService.addArticleVisitCount(id));
+	}
 }
