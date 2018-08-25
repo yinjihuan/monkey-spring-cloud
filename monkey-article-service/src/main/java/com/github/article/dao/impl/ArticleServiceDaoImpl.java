@@ -1,4 +1,4 @@
-package com.github.article.dao;
+package com.github.article.dao.impl;
 
 import java.util.Date;
 import java.util.List;
@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
+import com.github.article.dao.ArticleServiceDao;
 import com.github.article.po.Article;
 import com.mongodb.client.result.UpdateResult;
 
