@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.common.base.Response;
 import com.github.common.base.ResponseData;
+import com.github.common.util.JWTUtils;
 import com.github.user.dto.UserDto;
 import com.github.user.dto.UserLoginDto;
 import com.github.user.param.LoginParam;
@@ -33,7 +34,7 @@ public class UserController {
 	@ApiOperation(value = "用户登录")
 	@ApiResponses({ @ApiResponse(code = 200, message = "OK", response = UserLoginDto.class) })
 	@PostMapping("/login")
-	public ResponseData<User> login(@ApiParam(value = "登录参数", required = true) @RequestBody LoginParam param) {
+	public ResponseData<UserLoginDto> login(@ApiParam(value = "登录参数", required = true) @RequestBody LoginParam param) {
 		if (param == null) {
 			return Response.failByParams("参数不能为空");
 		}
@@ -47,7 +48,10 @@ public class UserController {
 		if (user == null) {
 			return Response.failByParams("用户名或者密码错误");
 		}
-		return Response.ok(user);
+		String token = JWTUtils.getToken(user.getId().toString(), 60 * 60);
+		UserLoginDto loginDto = UserLoginDto.builder().id(user.getId())
+				.username(user.getUsername()).nickname(user.getNickname()).token(token).build();
+		return Response.ok(loginDto);
 	}
 
 	@ApiOperation(value = "获取用户信息")
