@@ -12,6 +12,7 @@ import com.github.article.dao.ArticleServiceDao;
 import com.github.article.dto.ArticleDto;
 import com.github.article.po.Article;
 import com.github.article.service.ArticleService;
+import com.github.common.exception.ParamException;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -43,6 +44,9 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	public List<ArticleDto> queryArticleByUser(Long userId) {
+		if (userId == null) {
+			throw new ParamException("userId不能为空");
+		}
 		List<ArticleDto> datas = new ArrayList<ArticleDto>();
 		List<Article> articleList = articleServiceDao.queryArticleByUser(userId);
 		for (Article article : articleList) {

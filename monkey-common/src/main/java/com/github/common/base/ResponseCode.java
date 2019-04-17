@@ -12,7 +12,7 @@ public enum ResponseCode {
 	/** 禁止访问 **/
 	NO_AUTH_CODE(403),
 	/** 资源没找到 **/
-	NOT_FOUND(404),
+	NOT_FOUND_CODE(404),
 	/** 服务器错误 **/
 	SERVER_ERROR_CODE(500),
 	/** 服务降级中 **/

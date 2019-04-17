@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.github</groupId>
-	<artifactId>monkey-gateway</artifactId>
-	<version>1.0.0</version>
+	<artifactId>monkey-core</artifactId>
+	<version>1.0.1</version>
 	<packaging>jar</packaging>
 
-	<name>monkey-gateway</name>
+	<name>monkey-user-service</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -20,29 +20,32 @@
 		<version>2.0.6.RELEASE</version>
 	</parent>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Finchley.SR2</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
 	<dependencies>
-	
+
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-gateway</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
+
+		<!-- 简化get,set方法 -->
 		<dependency>
-	        <groupId>org.springframework.cloud</groupId>
-	        <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-	    </dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+
+		<!-- 通用工具类 -->
+		<dependency>
+			<groupId>com.github</groupId>
+			<artifactId>monkey-common</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<!-- swagger -->
+		<dependency>
+			<groupId>com.spring4all</groupId>
+			<artifactId>swagger-spring-boot-starter</artifactId>
+			<version>1.7.1.RELEASE</version>
+		</dependency>
 		
 	</dependencies>
 
@@ -54,7 +57,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<executable>true</executable>
-					<mainClass>com.github.gateway.MonkeyGatewayApplication</mainClass>
+					<mainClass>com.github.user.MonkeyUserServiceApplication</mainClass>
 				</configuration>
 			</plugin>
 
@@ -69,4 +72,11 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
 </project>

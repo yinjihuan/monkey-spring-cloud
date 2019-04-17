@@ -16,6 +16,7 @@ import com.github.article.po.Article;
 import com.github.article.service.ArticleService;
 import com.github.common.base.Response;
 import com.github.common.base.ResponseData;
+import com.github.common.exception.ParamException;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -97,6 +98,7 @@ public class ArticleController {
 	@GetMapping("/list/user")
 	public ResponseData<List<ArticleDto>> queryArticleByUser(Long userId) {
 		if (userId == null) {
+			//throw new ParamException("userId不能为空");
 			return Response.failByParams("userId不能为空");
 		}
 		return Response.ok(articleService.queryArticleByUser(userId));

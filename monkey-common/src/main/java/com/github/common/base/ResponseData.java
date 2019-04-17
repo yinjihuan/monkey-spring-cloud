@@ -27,10 +27,12 @@ public class ResponseData<T> {
 	}
 
 	public ResponseData<T> fail() {
+		this.code = ResponseCode.SERVER_ERROR_CODE.getCode();
 		return this;
 	}
 
 	public ResponseData<T> fail(String message) {
+		this.code = ResponseCode.SERVER_ERROR_CODE.getCode();
 		this.message = message;
 		return this;
 	}

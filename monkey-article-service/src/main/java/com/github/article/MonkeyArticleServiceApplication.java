@@ -2,6 +2,7 @@ package com.github.article;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 
 /**
@@ -14,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2018-08-15
  * 
  */
+@ComponentScan(basePackages= {"com.github"})
 @SpringBootApplication
 public class MonkeyArticleServiceApplication {
 	public static void main(String[] args) {
