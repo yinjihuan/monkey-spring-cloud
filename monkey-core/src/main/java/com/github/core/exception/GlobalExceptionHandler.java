@@ -1,11 +1,14 @@
 package com.github.core.exception;
 
 
+import java.util.stream.Collectors;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,6 +44,12 @@ public class GlobalExceptionHandler {
     public ResponseData<Object> defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
         if (e instanceof org.springframework.web.servlet.NoHandlerFoundException) {
         	return Response.fail(e.getMessage(), ResponseCode.NOT_FOUND_CODE);
+		} else if (e instanceof MethodArgumentNotValidException) {
+			// 注解验证参数异常
+			MethodArgumentNotValidException exception = (MethodArgumentNotValidException) e;
+			BindingResult bindResult = exception.getBindingResult();
+			String message = bindResult.getAllErrors().stream().map(s -> s.getDefaultMessage()).collect(Collectors.joining(","));
+			return Response.fail(message, ResponseCode.PARAM_ERROR_CODE);
 		} else {
 			logger.error("异常", e);
 			return Response.fail(e.getMessage(), ResponseCode.SERVER_ERROR_CODE);

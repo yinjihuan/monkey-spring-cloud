@@ -3,6 +3,8 @@ package com.github.article.po;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -33,12 +35,14 @@ public class Article {
 	/**
 	 * 标题
 	 */
+	@NotBlank(message="标题不能为空")
 	@Field("title")
 	private String title;
 	
 	/**
 	 * 内容
 	 */
+	@NotBlank(message="内容不能为空")
 	@Field("content")
 	private String content;
 	

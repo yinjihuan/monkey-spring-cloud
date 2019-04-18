@@ -2,6 +2,8 @@ package com.github.article.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -33,22 +35,22 @@ public class ArticleController {
 	
 	@ApiOperation(value = "添加文章")
 	@PostMapping("/add")
-	public ResponseData<String> addArticle(@RequestBody Article article) {
-		if (article == null) {
-			return Response.failByParams("参数不能为空");
-		}
-		if (!StringUtils.hasText(article.getTitle())) {
-			return Response.failByParams("title不能为空");
-		}
-		if (!StringUtils.hasText(article.getContent())) {
-			return Response.failByParams("content不能为空");
-		}
-		if (CollectionUtils.isEmpty(article.getTags())) {
-			return Response.failByParams("tags不能为空");
-		}
-		if (article.getUserId() == null) {
-			return Response.failByParams("userId不能为空");
-		}
+	public ResponseData<String> addArticle(@Valid @RequestBody Article article) {
+//		if (article == null) {
+//			return Response.failByParams("参数不能为空");
+//		}
+//		if (!StringUtils.hasText(article.getTitle())) {
+//			return Response.failByParams("title不能为空");
+//		}
+//		if (!StringUtils.hasText(article.getContent())) {
+//			return Response.failByParams("content不能为空");
+//		}
+//		if (CollectionUtils.isEmpty(article.getTags())) {
+//			return Response.failByParams("tags不能为空");
+//		}
+//		if (article.getUserId() == null) {
+//			return Response.failByParams("userId不能为空");
+//		}
 		String id = articleService.saveArticle(article);
 		return Response.ok(id);
 	}
