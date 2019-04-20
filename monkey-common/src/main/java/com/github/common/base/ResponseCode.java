@@ -16,7 +16,9 @@ public enum ResponseCode {
 	/** 服务器错误 **/
 	SERVER_ERROR_CODE(500),
 	/** 服务降级中 **/
-	DOWNGRADE(406);
+	DOWNGRADE(406),
+	/** 异常回退 **/
+	FALLBACK(407);
 	private int code;
 
 	public void setCode(int code) {

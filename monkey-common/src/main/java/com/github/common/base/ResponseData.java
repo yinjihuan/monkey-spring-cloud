@@ -15,6 +15,13 @@ public class ResponseData<T> {
 	private String message = "";
 	private T data;
 
+	public boolean isOk() {
+		if(this.code == ResponseCode.SUCCESS_CODE.getCode() && this.data != null){
+			return true;
+		}
+		return false;
+	}
+	
 	public ResponseData<T> ok(T data) {
 		this.data = data;
 		return this;
@@ -79,7 +86,7 @@ public class ResponseData<T> {
 		this.message = message;
 	}
 
-	public Object getData() {
+	public T getData() {
 		return data;
 	}
 

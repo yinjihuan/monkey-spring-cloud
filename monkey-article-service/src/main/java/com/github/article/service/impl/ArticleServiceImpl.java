@@ -12,7 +12,10 @@ import com.github.article.dao.ArticleServiceDao;
 import com.github.article.dto.ArticleDto;
 import com.github.article.po.Article;
 import com.github.article.service.ArticleService;
+import com.github.common.base.ResponseData;
 import com.github.common.exception.ParamException;
+import com.github.feignclient.user.UserRemoteClient;
+import com.github.feignclient.user.dto.UserDto;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -20,6 +23,9 @@ public class ArticleServiceImpl implements ArticleService {
 	@Autowired
 	private ArticleServiceDao articleServiceDao;
 
+	@Autowired
+	private UserRemoteClient userRemoteClient;
+	
 	public String saveArticle(Article article) {
 		article.setAddTime(new Date());
 		return articleServiceDao.saveArticle(article);
@@ -32,6 +38,11 @@ public class ArticleServiceImpl implements ArticleService {
 			return null;
 		}
 		BeanUtils.copyProperties(article, articleDto);
+		ResponseData<UserDto> responseData = userRemoteClient.getUser(1L);
+		if (responseData.isOk()) {
+			String username = responseData.getData().getUsername();
+			articleDto.setUsername(username);
+		}
 		return articleDto;
 	}
 

@@ -28,6 +28,9 @@ public class ArticleDto {
 	@ApiModelProperty(value = "用户ID")
 	private Long userId;
 	
+	@ApiModelProperty(value = "用户名")
+	private String username;
+	
 	@ApiModelProperty(value = "访问数量")
 	private Long visitCount;
 	
