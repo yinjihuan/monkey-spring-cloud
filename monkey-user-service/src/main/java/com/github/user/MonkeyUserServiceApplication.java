@@ -2,6 +2,7 @@ package com.github.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 //import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 
@@ -17,7 +18,7 @@ import com.spring4all.swagger.EnableSwagger2Doc;
  * 
  */
 @SpringBootApplication
-//@EnableDiscoveryClient
+@EnableDiscoveryClient
 @EnableSwagger2Doc
 @ComponentScan(basePackages= {"com.github"})
 public class MonkeyUserServiceApplication {
