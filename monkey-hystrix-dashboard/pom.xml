@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.github</groupId>
-	<artifactId>monkey-article-service</artifactId>
+	<artifactId>monkey-hystrix-dashboard</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>monkey-article-service</name>
+	<name>monkey-hystrix-dashboard</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -36,66 +36,8 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency> 
-			<groupId>org.springframework.cloud</groupId> 
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId> 
-		</dependency>
-
-		 <dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-			<exclusions>
-				<exclusion>
-					 <groupId>com.google.guava</groupId>
-    				 <artifactId>guava</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
-
-		<!-- 简化get,set方法 -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
-
-		<!-- 通用工具类 -->
-		<dependency>
-			<groupId>com.github</groupId>
-			<artifactId>monkey-common</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-
-		<!-- swagger -->
-		<dependency>
-			<groupId>com.spring4all</groupId>
-			<artifactId>swagger-spring-boot-starter</artifactId>
-			<version>1.7.1.RELEASE</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.github</groupId>
-			<artifactId>monkey-core</artifactId>
-			<version>1.0.1</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.github</groupId>
-			<artifactId>monkey-feign-client</artifactId>
-			<version>1.0.0</version>
+			<artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
 		</dependency>
 		
 	</dependencies>

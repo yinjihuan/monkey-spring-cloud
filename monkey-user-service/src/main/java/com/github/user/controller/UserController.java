@@ -61,6 +61,12 @@ public class UserController {
 		if (id == null) {
 			return Response.failByParams("id不能为空");
 		}
+//		try {
+//			Thread.sleep(5000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		return Response.ok(userService.getUser(id));
 	}
 }

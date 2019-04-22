@@ -38,7 +38,7 @@ public class ArticleServiceImpl implements ArticleService {
 			return null;
 		}
 		BeanUtils.copyProperties(article, articleDto);
-		ResponseData<UserDto> responseData = userRemoteClient.getUser(1L);
+		ResponseData<UserDto> responseData = userRemoteClient.getUser(article.getUserId());
 		if (responseData.isOk()) {
 			String username = responseData.getData().getUsername();
 			articleDto.setUsername(username);
