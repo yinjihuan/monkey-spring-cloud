@@ -41,6 +41,8 @@
 
 # 3. 前后端对接
 - 搭建Zull服务
+- Zull路由转发
+- Zull异常处理
 - Zull服务的回退
 - 前端框架搭建
 - 前端通过Zull调用接口
@@ -74,7 +76,3 @@
 - 前后端数据加解密
 
 ![微信扫码加入猿天地知识星球](https://upload-images.jianshu.io/upload_images/2685774-b11318670c1457fa.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-
-
-
