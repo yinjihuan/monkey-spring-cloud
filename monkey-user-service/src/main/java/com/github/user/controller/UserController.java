@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiResponses;
 public class UserController {
 
 	@Autowired
-	private UserService userService;
+	public UserService userService;
 	
 	@ApiOperation(value = "用户登录")
 	@ApiResponses({ @ApiResponse(code = 200, message = "OK", response = UserLoginDto.class) })

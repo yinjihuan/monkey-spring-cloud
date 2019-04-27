@@ -62,6 +62,12 @@ public class ArticleController {
 		if (id == null) {
 			return Response.failByParams("文章id不能为空");
 		}
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return Response.ok(articleService.getArticle(id));
 	}
 	
