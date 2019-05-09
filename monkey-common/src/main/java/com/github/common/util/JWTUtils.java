@@ -53,7 +53,7 @@ public class JWTUtils {
 	 * @param exp 失效时间，单位分钟
 	 * @return
 	 */
-	public static String getToken(String uid, int exp) {
+	public String getToken(String uid, int exp) {
 		long endTime = System.currentTimeMillis() + 1000 * 60 * exp;
 		return Jwts.builder().setSubject(uid).setExpiration(new Date(endTime))
 				.signWith(SignatureAlgorithm.RS512, priKey).compact();

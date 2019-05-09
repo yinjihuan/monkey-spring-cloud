@@ -32,6 +32,11 @@
       </el-table-column>
     </el-table>
   </template>
+  
+  <p></p>
+  	用户名：<input v-model="loginParam.username"/>
+  	密码：<input v-model="loginParam.pass" type="pass"/>
+  	<button @click="login">登陆</button>
 	</div>
 </body>
 <script>
@@ -39,6 +44,10 @@ new Vue({
     el: '#app',
     data: function() {
     	return {
+    		loginParam:{
+    			username:'',
+    			pass:''
+    		},
     		name: "yinjihuan",
     		 tableData: [{
     	            date: '2016-05-02',
@@ -73,6 +82,24 @@ new Vue({
     	  .catch(function (error) {
     	    console.log(error);
     	  });
+    },methods:{
+    	login:function(){
+    		var that = this;
+    		axios.post('http://192.168.31.244:2011/user-service/user/login', that.loginParam)
+    		  .then(function (response) {
+    		    if(response.data.code == 200){
+    		    	console.log(response.data)
+    		    	var token = response.data.data.token;
+    		    	alert(token);
+    		    	localStorage.setItem("token", token);
+    		    } else {
+    		    	alert(response.data.message);
+    		    }
+    		  })
+    		  .catch(function (error) {
+    		    console.log(error);
+    		  });
+    	}
     }
 })
 </script>

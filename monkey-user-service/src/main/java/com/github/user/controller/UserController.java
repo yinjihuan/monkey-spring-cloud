@@ -48,7 +48,7 @@ public class UserController {
 		if (user == null) {
 			return Response.failByParams("用户名或者密码错误");
 		}
-		String token = JWTUtils.getToken(user.getId().toString(), 60 * 60);
+		String token = JWTUtils.getInstance().getToken(user.getId().toString(), 60);
 		UserLoginDto loginDto = UserLoginDto.builder().id(user.getId())
 				.username(user.getUsername()).nickname(user.getNickname()).token(token).build();
 		return Response.ok(loginDto);
