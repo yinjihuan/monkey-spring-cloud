@@ -50,6 +50,12 @@ public class ResponseData<T> {
 		return this;
 	}
 
+	public ResponseData<T> fail(String message, int code) {
+		this.message = message;
+		this.code = code;
+		return this;
+	}
+
 	public ResponseData(T data) {
 		super();
 		this.data = data;
