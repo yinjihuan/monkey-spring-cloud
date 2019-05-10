@@ -33,7 +33,7 @@ public class ArticleServiceImpl implements ArticleService {
 
 	public ArticleDto getArticle(String id) {
 		ArticleDto articleDto = new ArticleDto();
-		Article article = articleServiceDao.getArticle(id);
+		Article article = articleServiceDao.getArticle("5cb87ca3b42b013a567f8fea");
 		if (article == null) {
 			return null;
 		}

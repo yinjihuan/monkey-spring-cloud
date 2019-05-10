@@ -1,10 +1,18 @@
 package com.github.user.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,6 +39,9 @@ public class UserController {
 	@Autowired
 	public UserService userService;
 	
+	@Autowired
+	private HttpServletRequest request;
+	    
 	@ApiOperation(value = "用户登录")
 	@ApiResponses({ @ApiResponse(code = 200, message = "OK", response = UserLoginDto.class) })
 	@PostMapping("/login")
@@ -54,10 +65,24 @@ public class UserController {
 		return Response.ok(loginDto);
 	}
 
+	List<Integer> datas = Collections.synchronizedList(new ArrayList<>());
+	
 	@ApiOperation(value = "获取用户信息")
 	@ApiResponses({ @ApiResponse(code = 200, message = "OK", response = UserDto.class) })
 	@GetMapping("/get")
 	public ResponseData<UserDto> getUser(Long id) {
+		String uid = request.getHeader("uid");
+		System.err.println(uid);
+		if (StringUtils.hasText(uid))
+			datas.add(Integer.parseInt(uid));
+		
+		Collections.sort(datas, new Comparator<Integer>() {
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				return o1.compareTo(o2);
+			}
+		});
+		System.out.println(datas.toString());
 		if (id == null) {
 			return Response.failByParams("id不能为空");
 		}

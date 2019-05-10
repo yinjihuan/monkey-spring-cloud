@@ -46,6 +46,7 @@ public class AuthFilter extends ZuulFilter {
         HttpServletRequest request = ctx.getRequest();
         String uri = request.getRequestURI();
         String token = request.getHeader("token");
+        System.err.println("--"+token);
         // API白名单内直接放行
         if (whiteApis.contains(uri)) {
         	return null;
@@ -69,7 +70,7 @@ public class AuthFilter extends ZuulFilter {
             ctx.getResponse().setContentType("application/json; charset=utf-8");
             return null;
     	}
-    	ctx.addZuulRequestHeader("loginUserId", jwResult.getUid());
+    	ctx.addZuulRequestHeader("uid", jwResult.getUid());
         return null;
     }
     
