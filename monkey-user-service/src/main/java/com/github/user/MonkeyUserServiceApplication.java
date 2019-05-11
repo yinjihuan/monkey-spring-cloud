@@ -6,6 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 //import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 
+import com.alicp.jetcache.anno.config.EnableCreateCacheAnnotation;
 import com.spring4all.swagger.EnableSwagger2Doc;
 /**
  * 用户服务启动入口
@@ -17,6 +18,7 @@ import com.spring4all.swagger.EnableSwagger2Doc;
  * @date 2018-08-14
  * 
  */
+@EnableCreateCacheAnnotation
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableSwagger2Doc

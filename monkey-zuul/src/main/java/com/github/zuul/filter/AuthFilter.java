@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
+
+import com.alicp.jetcache.Cache;
+import com.alicp.jetcache.anno.CreateCache;
 import com.ctrip.framework.apollo.spring.annotation.ApolloJsonValue;
 import com.github.common.base.Response;
 import com.github.common.base.ResponseCode;
@@ -20,6 +23,9 @@ public class AuthFilter extends ZuulFilter {
 
 	@ApolloJsonValue("${white.apis}")
 	private List<String> whiteApis;
+	
+	@CreateCache(name="logoutCache:", expire = 1000)
+	private Cache<String, Long> logoutCache;
 	
     public AuthFilter() {
         super();
@@ -46,7 +52,6 @@ public class AuthFilter extends ZuulFilter {
         HttpServletRequest request = ctx.getRequest();
         String uri = request.getRequestURI();
         String token = request.getHeader("token");
-        System.err.println("--"+token);
         // API白名单内直接放行
         if (whiteApis.contains(uri)) {
         	return null;
@@ -67,6 +72,16 @@ public class AuthFilter extends ZuulFilter {
     		ctx.setSendZuulResponse(false);
             ctx.set("isSuccess", false);
             ctx.setResponseBody(JsonUtils.toJson(Response.fail(jwResult.getMsg(), jwResult.getCode())));
+            ctx.getResponse().setContentType("application/json; charset=utf-8");
+            return null;
+    	}
+    	
+    	// 此token已经注销
+    	Long cacheResult = logoutCache.get(jwResult.getUid());
+    	if (cacheResult != null) {
+    		ctx.setSendZuulResponse(false);
+            ctx.set("isSuccess", false);
+            ctx.setResponseBody(JsonUtils.toJson(Response.fail("非法请求", ResponseCode.NO_AUTH_CODE)));
             ctx.getResponse().setContentType("application/json; charset=utf-8");
             return null;
     	}

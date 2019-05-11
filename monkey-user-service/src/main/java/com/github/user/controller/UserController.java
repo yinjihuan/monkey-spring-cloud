@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alicp.jetcache.Cache;
+import com.alicp.jetcache.anno.CreateCache;
 import com.github.common.base.Response;
 import com.github.common.base.ResponseData;
 import com.github.common.util.JWTUtils;
@@ -42,6 +44,9 @@ public class UserController {
 	@Autowired
 	private HttpServletRequest request;
 	    
+	@CreateCache(name="logoutCache:", expire = 1000)
+	private Cache<String, Long> logoutCache;
+	
 	@ApiOperation(value = "用户登录")
 	@ApiResponses({ @ApiResponse(code = 200, message = "OK", response = UserLoginDto.class) })
 	@PostMapping("/login")
@@ -64,6 +69,14 @@ public class UserController {
 				.username(user.getUsername()).nickname(user.getNickname()).token(token).build();
 		return Response.ok(loginDto);
 	}
+	
+	@PostMapping("/logout")
+	public ResponseData<Boolean> logout() {
+		String uid = request.getHeader("uid");
+		logoutCache.put(uid, 0L);
+		return Response.ok(true);
+	}
+
 
 	List<Integer> datas = Collections.synchronizedList(new ArrayList<>());
 	
@@ -86,12 +99,12 @@ public class UserController {
 		if (id == null) {
 			return Response.failByParams("id不能为空");
 		}
-//		try {
-//			Thread.sleep(5000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			Thread.sleep(1200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return Response.ok(userService.getUser(id));
 	}
 }

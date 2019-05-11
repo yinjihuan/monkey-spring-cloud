@@ -3,6 +3,8 @@ package com.github.zuul;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+
+import com.alicp.jetcache.anno.config.EnableCreateCacheAnnotation;
 /**
  * 网关启动入口
  * 
@@ -13,6 +15,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
  * @date 2018-08-14
  * 
  */
+@EnableCreateCacheAnnotation
 @EnableZuulProxy
 @SpringBootApplication
 public class MonkeyZuulApplication {
