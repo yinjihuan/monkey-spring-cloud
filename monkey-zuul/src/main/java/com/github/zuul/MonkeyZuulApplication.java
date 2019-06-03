@@ -2,9 +2,11 @@ package com.github.zuul;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 import com.alicp.jetcache.anno.config.EnableCreateCacheAnnotation;
+import com.github.core.anno.EnableZuulDiscoveryStrategy;
 /**
  * 网关启动入口
  * 
@@ -15,6 +17,8 @@ import com.alicp.jetcache.anno.config.EnableCreateCacheAnnotation;
  * @date 2018-08-14
  * 
  */
+@EnableZuulDiscoveryStrategy
+@EnableDiscoveryClient
 @EnableCreateCacheAnnotation
 @EnableZuulProxy
 @SpringBootApplication
