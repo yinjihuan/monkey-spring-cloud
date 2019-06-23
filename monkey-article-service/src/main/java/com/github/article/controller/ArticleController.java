@@ -39,7 +39,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Api(value = "文章控制器")
 @RestController
 @RequestMapping("/article")
@@ -77,6 +78,7 @@ public class ArticleController {
 	@ApiResponses({ @ApiResponse(code = 200, message = "OK", response = ArticleDto.class) })
 	@GetMapping("/get")
 	public ResponseData<ArticleDto> getArticle(String id) {
+		log.info("请求进来了");
 		String uid = request.getHeader("uid");
 		System.err.println(Thread.currentThread().getName() + "\t****" + "\t" + uid);
 		if (id == null) {

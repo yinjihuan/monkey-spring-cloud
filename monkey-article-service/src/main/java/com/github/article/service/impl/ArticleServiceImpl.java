@@ -17,6 +17,9 @@ import com.github.common.exception.ParamException;
 import com.github.feignclient.user.UserRemoteClient;
 import com.github.feignclient.user.dto.UserDto;
 
+import brave.ScopedSpan;
+import brave.Tracer;
+
 @Service
 public class ArticleServiceImpl implements ArticleService {
 	
@@ -26,6 +29,9 @@ public class ArticleServiceImpl implements ArticleService {
 	@Autowired
 	private UserRemoteClient userRemoteClient;
 	
+	@Autowired
+	Tracer tracer;
+	
 	public String saveArticle(Article article) {
 		article.setAddTime(new Date());
 		return articleServiceDao.saveArticle(article);
@@ -33,10 +39,21 @@ public class ArticleServiceImpl implements ArticleService {
 
 	public ArticleDto getArticle(String id) {
 		ArticleDto articleDto = new ArticleDto();
-		Article article = articleServiceDao.getArticle("5cb87ca3b42b013a567f8fea");
-		if (article == null) {
-			return null;
+		ScopedSpan span = tracer.startScopedSpan("xx查询");
+		span.annotate("1001");
+		try {
+			Thread.sleep(200);
+		} catch (Exception | Error e) {
+			span.error(e);
+		} finally {
+			span.finish(); 
 		}
+//		Article article = articleServiceDao.getArticle("5cb87ca3b42b013a567f8fea");
+//		if (article == null) {
+//			return null;
+//		}
+		Article article = new Article();
+		article.setUserId(1L);
 		BeanUtils.copyProperties(article, articleDto);
 		ResponseData<UserDto> responseData = userRemoteClient.getUser(article.getUserId());
 		if (responseData.isOk()) {

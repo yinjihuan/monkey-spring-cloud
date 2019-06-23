@@ -18,6 +18,9 @@ import com.github.common.util.JsonUtils;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Component
 public class AuthFilter extends ZuulFilter {
 
@@ -48,6 +51,7 @@ public class AuthFilter extends ZuulFilter {
 
     @Override
     public Object run() {
+    	log.info("请求进来了");
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
         String uri = request.getRequestURI();

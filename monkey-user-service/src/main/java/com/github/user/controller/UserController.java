@@ -32,7 +32,9 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Api(value="用户控制器")
 @RestController
 @RequestMapping("/user")
@@ -84,6 +86,7 @@ public class UserController {
 	@ApiResponses({ @ApiResponse(code = 200, message = "OK", response = UserDto.class) })
 	@GetMapping("/get")
 	public ResponseData<UserDto> getUser(Long id) {
+		log.info("请求进来了");
 		String uid = request.getHeader("uid");
 		System.err.println(uid);
 		if (StringUtils.hasText(uid))
