@@ -36,6 +36,7 @@ public class BeanConfig {
 	@PostConstruct
 	public void init() {
 		//注册自定义线程池
+		System.out.println("---");
 		HystrixPlugins.getInstance().registerConcurrencyStrategy(new ThreadLocalHystrixConcurrencyStrategy());
 	}
 }

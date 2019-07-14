@@ -39,15 +39,15 @@ public class ArticleServiceImpl implements ArticleService {
 
 	public ArticleDto getArticle(String id) {
 		ArticleDto articleDto = new ArticleDto();
-		ScopedSpan span = tracer.startScopedSpan("xx查询");
-		span.annotate("1001");
-		try {
-			Thread.sleep(200);
-		} catch (Exception | Error e) {
-			span.error(e);
-		} finally {
-			span.finish(); 
-		}
+		//ScopedSpan span = tracer.startScopedSpan("xx查询");
+		//span.annotate("1001");
+//		try {
+//			Thread.sleep(200);
+//		} catch (Exception | Error e) {
+//			span.error(e);
+//		} finally {
+//			span.finish(); 
+//		}
 //		Article article = articleServiceDao.getArticle("5cb87ca3b42b013a567f8fea");
 //		if (article == null) {
 //			return null;
