@@ -8,7 +8,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import com.alicp.jetcache.anno.config.EnableCreateCacheAnnotation;
 import com.github.core.anno.EnableZuulDiscoveryStrategy;
 /**
- * 网关启动入口
+ * API网关启动入口
  * 
  * @author yinjihuan
  * 
